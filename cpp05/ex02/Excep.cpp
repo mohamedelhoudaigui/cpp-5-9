@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Excep.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 13:33:36 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/07/29 14:18:23 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/07/29 15:26:34 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "Excep.hpp"
 
-int	main()
+const char*	GradeTooHighException::what() const throw()
 {
-	Bureaucrat a("test", 1);
-	Form		fo("form", 2, 2);
+	return ("Grade too high !");
+}
 
-	std::cout << fo;
-	a.signForm(fo);
-	std::cout << fo;
-	return (0);
+const char*	GradeTooLowException::what() const throw()
+{
+	return ("Grade too low !");
+}
+
+const char*	FileOpenError::what() const throw()
+{
+	return ("Error oppening file !");
 }

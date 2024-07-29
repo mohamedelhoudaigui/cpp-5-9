@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 08:58:50 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 14:22:13 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:20:55 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-
-class	Form;
 
 class	Bureaucrat
 {
@@ -33,9 +31,8 @@ class	Bureaucrat
 		//setters :
 		void			incrGrade();
 		void			decrGrade();
+		// exeptions are implemented in a diffrente file
 
-		void	signForm(Form& form) const;
-		
 	private:
 		const std::string	name;
 		unsigned int		grade;

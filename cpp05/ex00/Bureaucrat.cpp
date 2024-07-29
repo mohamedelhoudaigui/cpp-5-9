@@ -6,11 +6,12 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:06:14 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 09:44:46 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/07/29 14:20:57 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Excep.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : name(name)
 {
@@ -65,19 +66,6 @@ void	Bureaucrat::decrGrade()
 	}
 	this->grade++;
 }
-
-//--------------------------------------------------------
-
-const char* Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
-{
-	return ("Grade is too high!");
-}
-
-const char* Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
-{
-	return ("Grade is too low!");
-}
-
 
 //----------------------------------------------------------
 
