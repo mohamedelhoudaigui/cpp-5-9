@@ -6,13 +6,12 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 14:23:13 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 05:47:37 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
-#include "Excep.hpp"
 
 
 Form::Form(std::string name, unsigned int execGrade, unsigned int signGrade) : name(name), grade_to_sign(signGrade), grade_to_exec(execGrade)
@@ -59,9 +58,22 @@ unsigned int	Form::getSignGrade() const
 void	Form::beSigned(const Bureaucrat& br)
 {
 	if (br.getGrade() <= this->getSignGrade())
+	{
 		this->status = true;
-	else
-		throw GradeTooLowException();
+		return ;
+	}
+	std::cerr << "Could not sign because ";
+	throw Bureaucrat::GradeTooLowException();
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Form grade too high !");
+}
+
+const char*	Form::GradeTooLowException::what() const throw()
+{
+	return ("Form grade too low !");
 }
 
 std::ostream&	operator<<(std::ostream& os, const Form& obj)

@@ -17,9 +17,9 @@
 #include <iostream>
 #include <string>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class	PresidentialPardonForm : public Form
+class	PresidentialPardonForm : public AForm
 {
 	public:
 		PresidentialPardonForm(const std::string target);
@@ -27,16 +27,9 @@ class	PresidentialPardonForm : public Form
 		PresidentialPardonForm&	operator=(const PresidentialPardonForm& other);
 		~PresidentialPardonForm();
 
-		std::string	getTarget() const;
-		std::string	getSignGrade() const;
-		std::string	getExecGrade() const;
+		void	execute(const Bureaucrat& executor) const;
 
-		void	execute(const Bureaucrat& executor)
-		
-	private:
-		unsigned int	execGrade;
-		unsigned int	signGrade;
-		std::string		target;
+		std::string	target;
 };
 
 

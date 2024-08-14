@@ -11,51 +11,34 @@
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-#include "Excep.hpp"
+#include "Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : execGrade(5), signGrade(25)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), target(target)
 {
-
 }
 
-PresidentialPardonForm::~PresidentialPardonForm(){}
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other)
 {
 	*this = other;
 }
 
-PresidentialPardonForm&	operator=(const PresidentialPardonForm& other)
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
-	this->target = other.getTarget();
-	this->execGrade = other.getExecGrade();
-	this->signGrade = other.getSignGrade();
+	AForm::operator=(other);
+	this->target = other.target;
 	return (*this);
 }
 
-//--------------------------------------------------------------------------------
-
-
-void	PresidentialPardonForm::execute(const Bureaucrat& executor)
+void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 {
-
-}
-	
-
-
-//----------------------------------------------------------------------------------
-
-std::string	PresidentialPardonForm::getTarget() const
-{
-	return (this->target);
-}
-
-std::string	PresidentialPardonForm::getExecGrade() const
-{
-	return (this->execGrade);
-}
-
-std::string	PresidentialPardonForm::getSignGrade() const
-{
-	return (this->signGrade);
+	if (executor.getGrade() > this->getExecGrade())
+		throw GradeTooLowException();
+	else if (!this->getStatus())
+		throw FormNotSigned();
+	std::cout << this->target << " has been pardoned by Zafod Beeblebrox.\n";
 }

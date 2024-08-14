@@ -1,8 +1,17 @@
-SRC = main.cpp Bureaucrat.cpp Form.cpp Excep.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC =	main.cpp \
+		Bureaucrat.cpp \
+		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEAD = Bureaucrat.hpp Form.hpp Exep.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+HEAD = Bureaucrat.hpp \
+AForm.hpp \
+ShrubberyCreationForm.hpp \
+RobotomyRequestForm.hpp \
+PresidentialPardonForm.hpp
 
 CC = c++ -std=c++98
 

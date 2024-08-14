@@ -6,20 +6,65 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 13:33:36 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 06:16:38 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int	main()
+int main ()
 {
-	Bureaucrat a("test", 1);
-	Form		fo("form", 2, 2);
+    Bureaucrat B("bureaucrat", 2);
+    AForm *f = new ShrubberyCreationForm("home");
+    AForm *f2 = new RobotomyRequestForm("home");
+    AForm *f3 = new PresidentialPardonForm("home");
 
-	std::cout << fo;
-	a.signForm(fo);
-	std::cout << fo;
-	return (0);
+    try
+    {
+        B.decrGrade();
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Error : " << e.what() << std::endl;
+    }  
+    std::cout << std::endl << " ----------------------------- " << std::endl;
+    try
+    {
+        f->beSigned(B);
+        f->execute(B);
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Error : " << e.what() << std::endl;
+    }  
+    std::cout << std::endl << " ----------------------------- " << std::endl;
+    try
+    {
+        B.signForm(*f2);
+        f2->execute(B);
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Error : " << e.what() << std::endl;
+    }  
+    std::cout << std::endl << " ----------------------------- " << std::endl;
+    try
+    {
+        f3->beSigned(B);
+        f3->execute(B);
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Error : " << e.what() << std::endl;
+    }
+    std::cout << B << std::endl;
+    std::cout << *f << std::endl;
+    delete f;
+    delete f2;
+    delete f3;
+    return (0);
 }

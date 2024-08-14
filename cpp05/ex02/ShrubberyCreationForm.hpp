@@ -18,9 +18,9 @@
 #include <string>
 #include <fstream>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class	ShrubberyCreationForm : public Form
+class	ShrubberyCreationForm : public AForm
 {
 	public:
 		ShrubberyCreationForm(const std::string target);
@@ -28,18 +28,15 @@ class	ShrubberyCreationForm : public Form
 		ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 
-		std::string	getTarget() const;
-		std::string	getSignGrade() const;
-		std::string	getExecGrade() const;
+		void	execute(const Bureaucrat& executor) const;
 
-		void	execute(const Bureaucrat& executor);
-		
-	private:
-		unsigned int	execGrade;
-		unsigned int	signGrade;
-		std::string		target;
+		class FileOpenError : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		std::string	target;
 };
-
-
 
 #endif

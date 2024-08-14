@@ -1,8 +1,8 @@
-SRC = main.cpp Bureaucrat.cpp Excep.cpp
+SRC = main.cpp Bureaucrat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-HEAD = Bureaucrat.hpp Excep.hpp
+HEAD = Bureaucrat.hpp
 
 CC = c++ -std=c++98
 

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 13:30:40 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 06:10:18 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 #include <string>
@@ -19,13 +19,13 @@
 
 class	Bureaucrat;
 
-class	Form
+class	AForm
 {
 	public:
-		Form(std::string name, unsigned int execGrade, unsigned int signGrade);
-		~Form();
-		Form&	operator=(const Form& other);
-		Form(const Form& other);
+		AForm(std::string name, unsigned int execGrade, unsigned int signGrade);
+		virtual ~AForm();
+		AForm&	operator=(const AForm& other);
+		AForm(const AForm& other);
 
 		std::string		getName() const;
 		bool			getStatus() const;
@@ -33,6 +33,17 @@ class	Form
 		unsigned int	getSignGrade() const;
 
 		void			beSigned(const Bureaucrat& br);
+		virtual void	execute(const Bureaucrat& executor) const = 0;
+
+		bool				status;
+		const unsigned int	grade_to_sign;
+		const unsigned int	grade_to_exec;
+
+		class FormNotSigned : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 
 		class GradeTooHighException : public std::exception
 		{
@@ -48,12 +59,9 @@ class	Form
 
 	private:
 		const std::string	name;
-		bool				status;
-		const unsigned int	grade_to_sign;
-		const unsigned int	grade_to_exec;
 		
 };
 
-std::ostream&	operator<<(std::ostream& os, const Form& obj);
+std::ostream&	operator<<(std::ostream& os, const AForm& obj);
 
 #endif

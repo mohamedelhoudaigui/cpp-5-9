@@ -11,33 +11,38 @@
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include "Excep.hpp"
+#include "Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : execGrade(137), signGrade(145)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target)
 {
 
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm(){}
+ShrubberyCreationForm::~ShrubberyCreationForm()
+{
+}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other)
 {
 	*this = other;
 }
 
-ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& other)
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-	this->target = other.getTarget();
-	this->execGrade = other.getExecGrade();
-	this->signGrade = other.getSignGrade();
+	AForm::operator=(other);
+	this->target = other.target;
 	return (*this);
 }
 
 //--------------------------------------------------------------------------------
 
 
-void	ShrubberyCreationForm::execute(const Bureaucrat& executor)
+void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
+	if (executor.getGrade() > this->getExecGrade())
+		throw GradeTooLowException();
+	else if (!this->getStatus())
+		throw FormNotSigned();
 	std::string	file_name = this->target + "_shrubbery";
 	std::ofstream	file;
 	file.open(file_name);
@@ -75,20 +80,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor)
 	file.close();
 }
 
-
-//----------------------------------------------------------------------------------
-
-std::string	ShrubberyCreationForm::getTarget() const
+const char*	ShrubberyCreationForm::FileOpenError::what() const throw()
 {
-	return (this->target);
-}
-
-std::string	ShrubberyCreationForm::getExecGrade() const
-{
-	return (this->execGrade);
-}
-
-std::string	ShrubberyCreationForm::getSignGrade() const
-{
-	return (this->signGrade);
+	return ("Error oppening file !");
 }

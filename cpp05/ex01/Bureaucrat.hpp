@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 08:58:50 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 14:22:13 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 05:44:13 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,31 @@ class	Form;
 class	Bureaucrat
 {
 	public:
-		// canonical form :
+
 		Bureaucrat(std::string name, unsigned int grade);
 		~Bureaucrat();
 		Bureaucrat&	operator=(const Bureaucrat& other);
 		Bureaucrat(const Bureaucrat& other);
-		// getters :
+
 		std::string		getName() const;
 		unsigned int	getGrade() const;
-		//setters :
+
 		void			incrGrade();
 		void			decrGrade();
 
 		void	signForm(Form& form) const;
+
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 		
 	private:
 		const std::string	name;

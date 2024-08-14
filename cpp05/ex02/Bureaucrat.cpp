@@ -6,12 +6,12 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:06:14 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 11:54:46 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 06:13:46 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : name(name)
 {
@@ -82,7 +82,7 @@ const char* Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
 
 //------------------------------------------------------------
 
-void	Bureaucrat::signForm(Form& form) const
+void	Bureaucrat::signForm(AForm& form) const
 {
 	try
 	{

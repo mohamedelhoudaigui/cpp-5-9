@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 14:22:44 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 05:45:05 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ class	Form
 		unsigned int	getSignGrade() const;
 
 		void			beSigned(const Bureaucrat& br);
+
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 
 	private:
 		const std::string	name;
