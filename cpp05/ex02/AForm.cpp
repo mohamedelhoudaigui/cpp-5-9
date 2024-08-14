@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 06:08:01 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:19:45 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ const char*	AForm::FormNotSigned::what() const throw()
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return ("Form grade too high !");
+	return ("grade too high !");
 }
 
 const char*	AForm::GradeTooLowException::what() const throw()
 {
-	return ("Form grade too low !");
+	return ("grade too low !");
 }
 
 std::ostream&	operator<<(std::ostream& os, const AForm& obj)

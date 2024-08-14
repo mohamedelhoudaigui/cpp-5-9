@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:06:14 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 06:13:46 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:20:31 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	Bureaucrat::decrGrade()
 
 const char* Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
 {
-	return ("Bureaucrat : Grade is too high!");
+	return ("Grade is too high!");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
 {
-	return ("Bureaucrat : Grade is too low!");
+	return ("Grade is too low!");
 }
 
 
