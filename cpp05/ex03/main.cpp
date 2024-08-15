@@ -6,12 +6,11 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/15 09:52:43 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/15 10:48:55 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
 #include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -24,7 +23,7 @@ void    f(void)
 
 int main ()
 {
-    atexit(f);
+    //atexit(f);
     try
     {
         Bureaucrat B("bureaucrat", 1);
