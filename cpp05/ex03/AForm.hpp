@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/15 09:57:32 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/15 09:56:17 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ class	AForm
 	private:
 		bool				status;
 		const unsigned int	grade_to_sign;
-		const unsigned int	grade_to_exec;
 		const std::string	name;
+		const unsigned int	grade_to_exec;
 		
 };
 

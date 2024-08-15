@@ -1,82 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 08:19:52 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/15 09:57:03 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-
-Form::Form(std::string name, unsigned int execGrade, unsigned int signGrade) : name(name), grade_to_sign(signGrade), grade_to_exec(execGrade)
+AForm::AForm(std::string name, unsigned int execGrade, unsigned int signGrade) : status(false), grade_to_sign(signGrade), name(name), grade_to_exec(execGrade)
 {
-	this->status = false;
 	if (grade_to_exec < 1 || grade_to_sign < 1)
 		throw GradeTooHighException();
 	else if (grade_to_exec > 150 || grade_to_sign > 150)
 		throw GradeTooLowException();
 }
 
-Form::~Form() {}
+AForm::~AForm() {}
 
-Form&	Form::operator=(const Form& other)
+AForm&	AForm::operator=(const AForm& other)
 {
 	this->status = other.status;
 	return (*this);
 }
 
-Form::Form(const Form& other) : name(other.getName()), status(other.getStatus()), grade_to_sign(other.getSignGrade()), grade_to_exec(other.getExecGrade())
+AForm::AForm(const AForm& other) : status(other.getStatus()), grade_to_sign(other.getSignGrade()), name(other.getName()), grade_to_exec(other.getExecGrade())
 {
 }
 
-std::string	Form::getName() const
+std::string	AForm::getName() const
 {
 	return (this->name);
 }
 
-bool		Form::getStatus() const
+bool		AForm::getStatus() const
 {
 	return (this->status);
 }
 
-unsigned int	Form::getExecGrade() const
+unsigned int	AForm::getExecGrade() const
 {
 	return (this->grade_to_exec);	
 }
 
-unsigned int	Form::getSignGrade() const
+unsigned int	AForm::getSignGrade() const
 {
 	return (this->grade_to_sign);	
 }
 
-void	Form::beSigned(const Bureaucrat& br)
+void	AForm::beSigned(const Bureaucrat& br)
 {
 	if (br.getGrade() <= this->getSignGrade())
-	{
 		this->status = true;
-		return ;
-	}
-	std::cerr << "Could not sign because ";
-	throw Bureaucrat::GradeTooLowException();
+	else
+		throw GradeTooLowException();
 }
 
-const char* Form::GradeTooHighException::what() const throw()
+const char*	AForm::FormNotSigned::what() const throw()
+{
+	return ("Error form not signed !");
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("grade too high !");
 }
 
-const char*	Form::GradeTooLowException::what() const throw()
+const char*	AForm::GradeTooLowException::what() const throw()
 {
 	return ("grade too low !");
 }
 
-std::ostream&	operator<<(std::ostream& os, const Form& obj)
+std::ostream&	operator<<(std::ostream& os, const AForm& obj)
 {
 	os << "Form name : " << obj.getName() << "\n"; 
 	os << "Form status : " << obj.getStatus() << "\n"; 

@@ -6,11 +6,12 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:06:14 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 08:19:34 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:20:31 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : name(name)
 {
@@ -66,16 +67,33 @@ void	Bureaucrat::decrGrade()
 	this->grade++;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+//--------------------------------------------------------
+
+const char* Bureaucrat::GradeTooHighException::what() const _NOEXCEPT
 {
-	return ("grade too high !");
+	return ("Grade is too high!");
 }
 
-const char*	Bureaucrat::GradeTooLowException::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what() const _NOEXCEPT
 {
-	return ("grade too low !");
+	return ("Grade is too low!");
 }
 
+
+//------------------------------------------------------------
+
+void	Bureaucrat::signForm(AForm& form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << *this << " signed " << form.getName() << "\n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << *this << " couldn't sign " << form.getName() << " because " << e.what() << "\n";
+	}
+}
 
 //----------------------------------------------------------
 

@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 09:06:14 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 05:47:10 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:19:40 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ void	Bureaucrat::signForm(Form& form) const
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Bureaucrat grade too high !");
+	return ("grade too high !");
 }
 
 const char*	Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Bureaucrat grade too low !");
+	return ("grade too low !");
 }
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj)
