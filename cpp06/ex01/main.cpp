@@ -5,44 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 13:43:21 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/01 19:06:26 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/01 19:25:21 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Serializer.hpp"
 
-int	main()
-{
-	Bureaucrat	a("simo", 1);
-	Bureaucrat	b(a);
-	Bureaucrat	c = a;
-	Bureaucrat	d("yassine", 150);
-	std::cout << a << "\n";
-	std::cout << "----------------------\n";
-	try
-	{
-		a.incrGrade();	
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";		
-	}
-	try
-	{
-		d.decrGrade();
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";
-	}
-	try
-	{
-		Bureaucrat f("test", 151);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";
-	}
-	return (0);
+
+int main() {
+	Data gg;
+	std::string g;
+
+	gg.field1 = 1;
+	gg.field2 = 'a';
+	gg.field3 = g;
+
+	uintptr_t	ptr_ser = Serializer::serialize(&gg);
+	Data*		ptr = &gg;
+	Data*		ptr_des = Serializer::deserialize(ptr_ser);
+	printf("%p\n%p\n", ptr_des, ptr);
 }

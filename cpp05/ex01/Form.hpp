@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 05:45:05 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:08:18 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class	Form
 	public:
 		Form(std::string name, unsigned int execGrade, unsigned int signGrade);
 		~Form();
-		Form&	operator=(const Form& other);
 		Form(const Form& other);
+		Form&	operator=(const Form& other);
 
 		std::string		getName() const;
 		bool			getStatus() const;

@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 10:37:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/15 09:57:32 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/01 13:48:49 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ class	AForm
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const _NOEXCEPT;
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const _NOEXCEPT;
+				const char* what() const throw();
 		};
 
 	private:

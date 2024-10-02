@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 17:45:42 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:49:45 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ToDouble(std::string& litt) {
 }
 
 void	ToChar(std::string& litt) {
-	std::cout << "Char: ";
+	std::cout << "char: ";
 
 	if (litt.length() == 1 && isalpha(litt[0])) {
 		std::cout << litt[0] << '\n';
