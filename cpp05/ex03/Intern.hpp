@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 21:30:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/09 21:30:35 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 23:21:10 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ class Intern
 
 	private:
 		std::string	Types[3];
-		AForm*		Pointers[3];
 };
 
+AForm*	MakeRobo(std::string Target);
+AForm*	MakeShru(std::string Target);
+AForm*	MakePres(std::string Target);
 
 #endif
