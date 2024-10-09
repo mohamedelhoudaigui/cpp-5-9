@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 00:46:57 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 10:52:25 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:51:33 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,14 @@ void	Bureaucrat::signForm(AForm& f) const {
 		std::cout << *this << " signed " << f << '\n';
 	} catch (const std::exception& e) {
 		std::cout << *this << " couldn’t sign " << f << " because " << e.what() << '\n';
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) const {
+	try {
+		form.execute(*this);
+		std::cout << *this << " executed " << form << '\n';
+	} catch (const std::exception & e) {
+		std::cout << e.what() << '\n';
 	}
 }

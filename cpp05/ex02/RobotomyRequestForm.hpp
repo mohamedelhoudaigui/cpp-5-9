@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:54:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 11:07:38 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:47:19 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class RobotomyRequestForm: public AForm
 		};
 
 		RobotomyRequestForm &		operator=( RobotomyRequestForm const & src );
-		void	execute(const Bureaucrat & executor);
+		void	execute(const Bureaucrat & executor) const;
 
 	private:
 		std::string	target;

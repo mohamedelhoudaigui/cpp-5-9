@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 00:47:05 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 10:53:13 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:49:01 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ class Bureaucrat
 		std::string	GetName() const;
 		void		IncrGrade();
 		void		DecrGrade();
+
 		void		signForm(AForm& f) const;
+		void		executeForm(AForm const & form) const;
 	
 		class GradeTooLowException : public std::exception {
 			const char* what() const throw();

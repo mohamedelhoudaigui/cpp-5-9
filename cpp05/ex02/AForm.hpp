@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 03:59:16 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 09:13:30 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:46:47 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class AForm
 		int				GetGSign()	const;
 		int				GetGExec()	const;
 		void			beSigned(const Bureaucrat& b);
-		virtual void	execute(Bureaucrat const & executor) = 0; 
+		virtual void	execute(Bureaucrat const & executor) const = 0; 
 
 		class GradeTooLowException : public std::exception {
 			const char* what() const throw();

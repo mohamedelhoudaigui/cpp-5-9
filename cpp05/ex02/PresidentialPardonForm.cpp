@@ -1,17 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 10:59:15 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 11:01:44 by mel-houd         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 
 #include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
 
 
 PresidentialPardonForm::PresidentialPardonForm()
@@ -27,7 +17,6 @@ PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & s
 AForm(src.GetName(), src.GetGSign(), src.GetGExec()), target(src.GetTarget())
 {
 }
-
 
 
 PresidentialPardonForm::~PresidentialPardonForm()
@@ -56,7 +45,7 @@ const char*	PresidentialPardonForm::FormNotSignedException::what() const throw()
 	return ("Form not signed !");
 }
 
-void	PresidentialPardonForm::execute(const Bureaucrat & executor) {
+void	PresidentialPardonForm::execute(const Bureaucrat & executor) const {
 	if (this->GetStatus() == false)
 		throw FormNotSignedException();
 	else if (executor.GetGrade() > this->GetGExec())

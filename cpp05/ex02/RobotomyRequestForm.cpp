@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:56:54 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/08 11:06:58 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:47:13 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ const char*	RobotomyRequestForm::FormNotSignedException::what() const throw() {
 	return ("Form not signed !");
 }
 
-void	RobotomyRequestForm::execute( const Bureaucrat & executor ) {
+void	RobotomyRequestForm::execute( const Bureaucrat & executor ) const {
 	if (this->GetStatus() == false)
 		throw FormNotSignedException();
 	else if (executor.GetGrade() > this->GetGExec())
