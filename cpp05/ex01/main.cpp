@@ -5,29 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 05:51:02 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 01:05:20 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 04:21:23 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-int	main()
-{
-	try
-	{
-		Bureaucrat a("test", 2);
-		Form		fo("form", 1, 1);
 
-		std::cout << fo;
-		a.signForm(fo);
-		std::cout << fo;
+int	main() {
+	Bureaucrat	a("test", 130);
+	Form		AForm("AForm", 1, 1);
+	Form		BForm(AForm);
+	Form		CForm = BForm;
+	
+	std::cout << AForm << '\n';
+	std::cout << BForm << '\n';
+	std::cout << CForm << '\n';
+
+	try {
+		Form	DForm("", -1, 149);
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-		return(1);
+
+	try {
+		Form	DForm("", 1, 155);
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	return (0);
+
+	try {
+		Form	DForm("DForm", 1, 155);
+		Bureaucrat	b("test", 130);
+
+		b.signForm(DForm);
+
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
+	}
+
+	try {
+		Form	DForm("DForm", 1, 1);
+		Bureaucrat	b("test", 130);
+
+		b.signForm(DForm);
+
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
+	}
+
+	
 }

@@ -5,50 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 08:58:50 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 05:39:41 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 00:47:05 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 03:33:30 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
-#include <iostream>
-#include <string>
-#include <exception>
+# include <iostream>
+# include <string>
 
-class	Bureaucrat
+class Bureaucrat
 {
+
 	public:
-		Bureaucrat(std::string name, unsigned int grade);
+
+		Bureaucrat();
+		Bureaucrat(std::string Name, int Grade);
+		Bureaucrat( Bureaucrat const & src );
 		~Bureaucrat();
-		Bureaucrat&	operator=(const Bureaucrat& other);
-		Bureaucrat(const Bureaucrat& other);
 
+		Bureaucrat &		operator=( Bureaucrat const & src );
 
-		std::string		getName() const;
-		unsigned int	getGrade() const;
-
-		void			incrGrade();
-		void			decrGrade();
-
-		class GradeTooHighException : public std::exception
-		{
-			public:
-				const char* what() const throw();
+		class GradeTooLowException : public std::exception {
+			const char* what() const throw();
 		};
 
-		class GradeTooLowException : public std::exception
-		{
-			public:
-				const char* what() const throw();
+		class GradeTooHighException : public std::exception {
+			const char* what() const throw();
 		};
+
+		int			GetGrade() const;
+		std::string	GetName() const;
+		void		IncrGrade();
+		void		DecrGrade();
 
 	private:
-		const std::string	name;
-		unsigned int		grade;
+
+		const std::string	Name;
+		int					Grade;
+		
+
 };
 
-std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj);
+std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i );
 
 #endif

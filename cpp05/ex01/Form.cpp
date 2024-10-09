@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 10:37:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 15:11:26 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 03:19:33 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 04:19:51 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,70 @@
 #include "Bureaucrat.hpp"
 
 
-Form::Form(std::string name, unsigned int execGrade, unsigned int signGrade) : name(name), grade_to_sign(signGrade), grade_to_exec(execGrade)
+Form::Form(): GSign(1), GExec(1) 
 {
-	this->status = false;
-	if (grade_to_exec < 1 || grade_to_sign < 1)
+}
+
+Form::Form(std::string Name, int GSign, int GExec): Name(Name), GSign(GSign), GExec(GExec), Signed(false)
+{
+	if (GSign < 1 || GExec < 1)
 		throw GradeTooHighException();
-	else if (grade_to_exec > 150 || grade_to_sign > 150)
+	if (GSign > 150 || GExec > 150)
 		throw GradeTooLowException();
 }
 
-Form::~Form() {}
-
-Form&	Form::operator=(const Form& other)
-{
-	this->status = other.status;
-	return (*this);
-}
-
-Form::Form(const Form& other) : name(other.getName()), status(other.getStatus()), grade_to_sign(other.getSignGrade()), grade_to_exec(other.getExecGrade())
+Form::Form( const Form & src ): Name(src.GetName()), GSign(src.GetGSign()), GExec(src.GetGExec()), Signed(src.GetStatus())
 {
 }
 
-std::string	Form::getName() const
+Form::~Form()
 {
-	return (this->name);
 }
 
-bool		Form::getStatus() const
+Form&	Form::operator=( Form const & src )
 {
-	return (this->status);
-}
-
-unsigned int	Form::getExecGrade() const
-{
-	return (this->grade_to_exec);	
-}
-
-unsigned int	Form::getSignGrade() const
-{
-	return (this->grade_to_sign);	
-}
-
-void	Form::beSigned(const Bureaucrat& br)
-{
-	if (br.getGrade() <= this->getSignGrade())
+	if ( this != &src )
 	{
-		this->status = true;
-		return ;
+		this->Signed = src.GetStatus();
 	}
-	std::cerr << "Could not sign because ";
-	throw Bureaucrat::GradeTooLowException();
+	return *this;
 }
 
-const char* Form::GradeTooHighException::what() const throw()
+std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	return ("grade too high !");
+	o << "Form name : " << i.GetName() << " - Grade to execute : " << i.GetGExec() << " - Grade to sign : " << i.GetGSign();
+	return o;
 }
 
-const char*	Form::GradeTooLowException::what() const throw()
-{
-	return ("grade too low !");
+const char*	Form::GradeTooHighException::what() const throw() {
+	return ("Grade Too High !");
 }
 
-std::ostream&	operator<<(std::ostream& os, const Form& obj)
-{
-	os << "Form name : " << obj.getName() << "\n"; 
-	os << "Form status : " << obj.getStatus() << "\n"; 
-	os << "Form sign grade : " << obj.getSignGrade() << "\n"; 
-	os << "Form execute grade : " << obj.getExecGrade() << "\n"; 
-	return (os);
+const char*	Form::GradeTooLowException::what() const throw() {
+	return ("Grade Too Low !");
+}
+
+std::string	Form::GetName() const {
+	return (this->Name);
+}
+
+bool		Form::GetStatus()	const {
+	return (this->Signed);
+}
+
+
+
+int			Form::GetGSign()	const {
+	return (this->GSign);
+}
+
+int			Form::GetGExec()	const {
+	return (this->GExec);
+}
+
+void	Form::beSigned(const Bureaucrat& b) {
+	if (b.GetGrade() <= this->GSign)
+		this->Signed = true;
+	else
+		throw GradeTooLowException();
 }

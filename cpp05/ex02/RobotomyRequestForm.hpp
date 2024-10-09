@@ -5,32 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 14:30:03 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 06:08:18 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 10:54:34 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 11:07:38 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #ifndef ROBOTOMYREQUESTFORM_HPP
-#define ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-#include <exception>
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <ctime>
+# include <iostream>
+# include <string>
+# include "AForm.hpp"
+# include "Bureaucrat.hpp"
+# include <ctime>
+# include <cstdlib>
 
-#include "AForm.hpp"
-
-class RobotomyRequestForm : public AForm
+class RobotomyRequestForm: public AForm
 {
+
 	public:
-		RobotomyRequestForm(const std::string target);
+
+		RobotomyRequestForm();
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm( RobotomyRequestForm const & src );
 		~RobotomyRequestForm();
-		RobotomyRequestForm(const RobotomyRequestForm& other);
-		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 
-		void	execute(const Bureaucrat& executor) const;
+		std::string	GetTarget() const;
 
+		class	FormNotSignedException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
+		class	GradeTooLowException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
+		RobotomyRequestForm &		operator=( RobotomyRequestForm const & src );
+		void	execute(const Bureaucrat & executor);
+
+	private:
 		std::string	target;
 };
 

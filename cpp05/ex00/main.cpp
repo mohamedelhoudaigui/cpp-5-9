@@ -5,44 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 09:28:10 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 13:43:21 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 01:05:20 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 04:22:00 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-int	main()
-{
-	Bureaucrat	a("simo", 1);
+
+int	main() {
+	Bureaucrat	a("test", 1);
+	Bureaucrat	e("test", 150);
 	Bureaucrat	b(a);
 	Bureaucrat	c = a;
-	Bureaucrat	d("yassine", 150);
-	std::cout << a << "\n";
-	std::cout << "----------------------\n";
-	try
-	{
-		a.incrGrade();	
+
+	std::cout << a << '\n';
+	std::cout << b << '\n';
+	std::cout << c << '\n';
+
+	try {
+		Bureaucrat d("test", -1);
+
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";		
+
+	try {
+		Bureaucrat d("test", 151);
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	try
-	{
-		d.decrGrade();
+
+	try {
+		a.IncrGrade();
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";
+
+	try {
+		e.DecrGrade();
+	} catch (const std::exception& e) {
+		std::cout << e.what() << '\n';
 	}
-	try
-	{
-		Bureaucrat f("test", 151);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << "\n";
-	}
-	return (0);
 }

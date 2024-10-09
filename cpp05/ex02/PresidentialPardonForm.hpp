@@ -1,37 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 14:30:07 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/07/29 14:32:21 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 10:54:39 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 10:54:40 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PresidentialPardonForm_HPP
-#define PresidentialPardonForm_HPP
 
-#include <exception>
-#include <iostream>
-#include <string>
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
-#include "AForm.hpp"
+# include <iostream>
+# include <string>
+# include "AForm.cpp"
 
-class	PresidentialPardonForm : public AForm
+
+class PresidentialPardonForm : public AForm
 {
+
 	public:
-		PresidentialPardonForm(const std::string target);
-		PresidentialPardonForm(const PresidentialPardonForm& other);
-		PresidentialPardonForm&	operator=(const PresidentialPardonForm& other);
+
+		PresidentialPardonForm();
+		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm( PresidentialPardonForm const & src );
 		~PresidentialPardonForm();
 
-		void	execute(const Bureaucrat& executor) const;
+		std::string	GetTarget() const;
 
+		class	FormNotSignedException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
+		class	GradeTooLowException: public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
+		PresidentialPardonForm&		operator=( PresidentialPardonForm const & src );
+		void	execute(const Bureaucrat & executor);
+
+	private:
 		std::string	target;
+
 };
-
-
 
 #endif

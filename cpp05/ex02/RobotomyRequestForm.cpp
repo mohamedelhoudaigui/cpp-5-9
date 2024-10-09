@@ -5,15 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 14:30:01 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 06:15:29 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 10:56:54 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 11:06:58 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
-#include "Bureaucrat.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45), target(target)
+
+RobotomyRequestForm::RobotomyRequestForm()
+{
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target):
+AForm("RobotomyRequestForm", 72, 45), target(target)
+{
+}
+
+RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ):
+AForm(src.GetName(), src.GetGSign(), src.GetGExec()), target(src.GetTarget())
 {
 }
 
@@ -21,27 +31,39 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other)
+RobotomyRequestForm &		RobotomyRequestForm::operator=( RobotomyRequestForm const & src )
 {
-	*this = other;
+	if ( this != &src )
+	{
+		this->target = src.GetTarget();
+	}
+	return *this;
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
-{
-	AForm::operator=(other);
-	this->target = other.target;
-	return (*this);
+std::string	RobotomyRequestForm::GetTarget() const {
+	return (this->target);
 }
 
-void RobotomyRequestForm::execute(const Bureaucrat& executor) const
-{
-	if (executor.getGrade() > this->getExecGrade())
+const char*	RobotomyRequestForm::GradeTooLowException::what() const throw() {
+	return ("Grade too low !");
+}
+
+const char*	RobotomyRequestForm::FormNotSignedException::what() const throw() {
+	return ("Form not signed !");
+}
+
+void	RobotomyRequestForm::execute( const Bureaucrat & executor ) {
+	if (this->GetStatus() == false)
+		throw FormNotSignedException();
+	else if (executor.GetGrade() > this->GetGExec())
 		throw GradeTooLowException();
-	else if (!this->getStatus())
-		throw FormNotSigned();
-	srand(time(0));
-	if (rand() % 2)
-		std::cout << this->target << " has been robotomized successfully\n";
-	else
-		std::cout << this->target << " has failed to be robotomized\n";
+	else {
+		srand( time(0) );
+		int	RandomNumber = rand() % 2 + 1;
+		if ( RandomNumber == 1 ) {
+			std::cout << this->target << " has been robotomized successfully\n";
+		} else {
+			std::cout << "the robotomy failed\n";
+		}	
+	}
 }

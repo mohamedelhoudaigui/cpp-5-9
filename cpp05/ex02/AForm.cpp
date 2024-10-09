@@ -1,86 +1,84 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                          :+:      :+:    :+:   */
+/*   AAForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 10:37:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/08/14 08:19:45 by mel-houd         ###   ########.fr       */
+/*   Created: 2024/10/08 03:19:33 by mel-houd          #+#    #+#             */
+/*   Updated: 2024/10/08 08:12:03 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm(std::string name, unsigned int execGrade, unsigned int signGrade) : status(false), grade_to_sign(signGrade), grade_to_exec(execGrade), name(name)
+
+AForm::AForm(): GSign(1), GExec(1) 
 {
-	if (grade_to_exec < 1 || grade_to_sign < 1)
+}
+
+AForm::AForm(std::string Name, int GSign, int GExec): Name(Name), GSign(GSign), GExec(GExec), Signed(false)
+{
+	if (GSign < 1 || GExec < 1)
 		throw GradeTooHighException();
-	else if (grade_to_exec > 150 || grade_to_sign > 150)
+	if (GSign > 150 || GExec > 150)
 		throw GradeTooLowException();
 }
 
-AForm::~AForm() {}
-
-AForm&	AForm::operator=(const AForm& other)
-{
-	this->status = other.status;
-	return (*this);
-}
-
-AForm::AForm(const AForm& other) : status(other.getStatus()), grade_to_sign(other.getSignGrade()), grade_to_exec(other.getExecGrade()), name(other.getName())
+AForm::AForm( const AForm & src ): Name(src.GetName()), GSign(src.GetGSign()), GExec(src.GetGExec()), Signed(src.GetStatus())
 {
 }
 
-std::string	AForm::getName() const
+AForm::~AForm()
 {
-	return (this->name);
 }
 
-bool		AForm::getStatus() const
+AForm&	AForm::operator=( AForm const & src )
 {
-	return (this->status);
+	if ( this != &src )
+	{
+		this->Signed = src.GetStatus();
+	}
+	return *this;
 }
 
-unsigned int	AForm::getExecGrade() const
+std::ostream &			operator<<( std::ostream & o, AForm const & i )
 {
-	return (this->grade_to_exec);	
+	o << "AForm name : " << i.GetName() << " - Grade to execute : " << i.GetGExec() << " - Grade to sign : " << i.GetGSign();
+	return o;
 }
 
-unsigned int	AForm::getSignGrade() const
-{
-	return (this->grade_to_sign);	
+const char*	AForm::GradeTooHighException::what() const throw() {
+	return ("Grade Too High !");
 }
 
-void	AForm::beSigned(const Bureaucrat& br)
-{
-	if (br.getGrade() <= this->getSignGrade())
-		this->status = true;
+const char*	AForm::GradeTooLowException::what() const throw() {
+	return ("Grade Too Low !");
+}
+
+std::string	AForm::GetName() const {
+	return (this->Name);
+}
+
+bool		AForm::GetStatus()	const {
+	return (this->Signed);
+}
+
+
+
+int			AForm::GetGSign()	const {
+	return (this->GSign);
+}
+
+int			AForm::GetGExec()	const {
+	return (this->GExec);
+}
+
+void	AForm::beSigned(const Bureaucrat& b) {
+	if (b.GetGrade() <= this->GSign)
+		this->Signed = true;
 	else
 		throw GradeTooLowException();
 }
 
-const char*	AForm::FormNotSigned::what() const throw()
-{
-	return ("Error form not signed !");
-}
-
-const char* AForm::GradeTooHighException::what() const throw()
-{
-	return ("grade too high !");
-}
-
-const char*	AForm::GradeTooLowException::what() const throw()
-{
-	return ("grade too low !");
-}
-
-std::ostream&	operator<<(std::ostream& os, const AForm& obj)
-{
-	os << "Form name : " << obj.getName() << "\n"; 
-	os << "Form status : " << obj.getStatus() << "\n"; 
-	os << "Form sign grade : " << obj.getSignGrade() << "\n"; 
-	os << "Form execute grade : " << obj.getExecGrade() << "\n"; 
-	return (os);
-}
