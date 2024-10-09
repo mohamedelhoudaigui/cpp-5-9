@@ -6,7 +6,7 @@
 /*   By: theworld27 <theworld27@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 01:05:20 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/09 17:25:08 by theworld27       ###   ########.fr       */
+/*   Updated: 2024/10/09 18:12:09 by theworld27       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,18 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 
 int	main() {
 	Bureaucrat				a("test", 1);
-	AForm*					b = new ShrubberyCreationForm(a.GetName());
-	PresidentialPardonForm	c(a.GetName());
-	RobotomyRequestForm		d(a.GetName());
+	Intern					b;
 
-	try{
-		a.signForm(*b);
-		a.executeForm(*b);
-	} catch (const std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
+	AForm*					f = b.makeForm("robotomy request", a.GetName());
+	AForm*					e = b.makeForm("    ", a.GetName());
 
-	try{
-		a.signForm(c);
-		a.executeForm(c);
-	} catch (const std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
+	std::cout << f << '\n';
+	std::cout << e << '\n';
 
-	try{
-		a.signForm(d);
-		a.executeForm(d);
-	} catch (const std::exception& e) {
-		std::cout << e.what() << '\n';
-	}
-
-	delete b;
+	delete f;
 }
