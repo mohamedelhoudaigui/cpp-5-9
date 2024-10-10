@@ -2,7 +2,7 @@ SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = Funcs.hpp
+HEADERS = Array.hpp
 
 CC = c++ -std=c++98
 
