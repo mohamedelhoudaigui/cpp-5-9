@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:06:35 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 19:19:32 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/18 08:13:22 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ struct Data {
 class Serializer {
 	private:
 		Serializer();
-		Serializer(const Serializer& other);
-		Serializer& operator=(const Serializer& other);
+
 	public:
 		static uintptr_t	serialize(Data* ptr);
 		static Data*		deserialize(uintptr_t raw);

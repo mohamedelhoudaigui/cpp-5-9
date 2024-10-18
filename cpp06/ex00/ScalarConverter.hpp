@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 17:27:51 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/18 08:12:53 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 class Scalar {
 	private:
 		Scalar();
-		Scalar(const Scalar& other);
-		Scalar& operator=(const Scalar& other);
 
 	public:
 		static void convert(std::string& litt);

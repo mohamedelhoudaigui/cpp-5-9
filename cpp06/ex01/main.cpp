@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:06:26 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/01 19:25:21 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:28:06 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int main() {
 	uintptr_t	ptr_ser = Serializer::serialize(&gg);
 	Data*		ptr = &gg;
 	Data*		ptr_des = Serializer::deserialize(ptr_ser);
-	printf("%p\n%p\n", ptr_des, ptr);
+	std::cout << ptr_des << std::endl << ptr <<std::endl;
 }
