@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/18 08:12:53 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:08:04 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,18 @@
 #include <iomanip>
 #include <cstdlib>
 #include <cerrno>
+#include <float.h>
 
 class Scalar {
 	private:
 		Scalar();
+		static int	ToInt(const char *str, bool c);
+		static void ToChar(const char *str);
+		static void	ToFloat(const char *str);
+		static void	ToDouble(const char *str);
 
 	public:
-		static void convert(std::string& litt);
+		static void convert(std::string input);
 };
 
 

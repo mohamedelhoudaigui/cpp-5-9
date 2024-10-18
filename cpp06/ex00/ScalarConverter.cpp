@@ -6,75 +6,104 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/18 08:08:52 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:18:44 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-Scalar::Scalar() {}
-Scalar::Scalar(const Scalar& other) {}
-Scalar& Scalar::operator=(const Scalar& other) {return *this;}
-
-
-int	*ToInt(std::string& litt, bool ToChar) {
-	int	*res = new(int);
-	*res = std::atoi(litt.c_str());
-	if (!ToChar) {
-		if (errno == 0)
-			std::cout << "int: " << *res << '\n';
-		else
-			std::cout << "int: impossible\n";
-	}
-	if (errno != 0)
+bool	AllNumbers(const char *str)
+{
+	if (strlen(str) == 0)
+		return false;
+	for (int i = 0; i < strlen(str); ++i)
 	{
-		delete res;
-		return NULL;
-	}
-	return res;
-}
-
-void	ToFloat(std::string& litt) {
-	std::cout << "float: ";
-	float res = std::strtod(litt.c_str(), NULL);
-	if (errno == 22 && res == 0) {
-		std::cout << "impossible\n";
-	} else {
-		std::cout << std::fixed << std::setprecision(1) << res << 'f' << '\n';	
-	}
-}
-
-void	ToDouble(std::string& litt) {
-	std::cout << "double: ";
-	double res = std::strtod(litt.c_str(), NULL);
-	if (errno == 22 && res == 0) {
-		std::cout << "impossible\n";
-	} else {
-		std::cout << std::fixed << std::setprecision(1) << res << '\n';	
-	}
-}
-
-void	ToChar(std::string& litt) {
-	std::cout << "char: ";
-
-	if (litt.length() == 1 && isalpha(litt[0])) {
-		std::cout << litt[0] << '\n';
-	} else {
-		int	*res = ToInt(litt, true);
-		if (res == NULL || *res < 0 || *res > 127){
-			std::cout << "impossible\n";
-		} else if (*res < 32 || *res > 126) {
-			std::cout <<  "not displayable\n";
-		}else {
-			std::cout << '\'' <<char(*res) << '\'' <<  '\n';
+		if (str[i] < '0' || str[i] > '9') 
+		{
+			if (str[i] != '+' && str[i] != '-')
+			{
+				return false;	
+			}
 		}
-		delete res;
 	}
+	return true;
 }
 
-void	Scalar::convert(std::string& litt) {
-	ToChar(litt);
-	ToInt(litt, false);
-	ToFloat(litt);
-	ToDouble(litt);
+int	Scalar::ToInt(const char *str, bool c)
+{
+	if (c == true)
+		std::cout << "int : ";
+	long long res = std::atoll(str);
+	if ((res == 0 && (str[0] != '0' && str[1] != '\0')) || res > INT_MAX || res < INT_MIN || !AllNumbers(str))
+	{
+		if (c == true)
+			std::cout << "impossible" << std::endl;
+		return (-1);
+	}
+	else
+	{
+		if (c == true)
+			std::cout << res << std::endl;
+	}
+	return (res);
+}
+
+void	Scalar::ToFloat(const char *str)
+{
+	std::cout << "float : ";
+
+	char	*end;
+	float res = std::strtof(str, &end);
+	if (end != &str[strlen(str)] || strlen(str) == 0 || str[0] == ' ' || str[0] == '\t')
+	{
+		std::cout << "impossible";
+	}
+	else
+		std::cout << std::fixed << std::setprecision(2) << res << 'f';
+	std::cout << std::endl;
+}
+
+void	Scalar::ToDouble(const char *str)
+{
+	char	*end;
+	std::cout << "double : ";
+	float res = std::strtod(str, &end);
+	if (end != &str[strlen(str)] || strlen(str) == 0 || (str[0] == ' ' || str[0] == '\t'))
+	{
+		std::cout << "impossible";
+	}
+	else
+		std::cout << std::fixed << std::setprecision(2) << res;
+	std::cout << std::endl;
+}
+
+void	Scalar::ToChar(const char *str)
+{
+	std::cout << "char: ";
+	if (strlen(str) == 1)
+	{
+		if ((str[0] >= 'a' && str[0] <= 'z') || (str[0] >= 'A' && str[0] <= 'Z'))
+		{
+			std::cout << str << std::endl;
+			return ;	
+		}
+	}
+
+	int res = ToInt(str, false);
+
+	if (res < 0 || res > 127)
+	 	std::cout << "impossible";
+	else if (res < 32 || res == 127)
+		std::cout << "not displayable";
+	else
+		std::cout << static_cast<char>(res);
+	std::cout << std::endl;
+}
+
+void	Scalar::convert(std::string input)
+{
+	ToChar(input.c_str());
+	ToInt(input.c_str(), true);
+	ToFloat(input.c_str());
+	ToDouble(input.c_str());
 }
