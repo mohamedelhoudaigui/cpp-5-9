@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:39:45 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/18 12:27:30 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/20 03:11:46 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main() {
 	identify(&ptr);
 	identify(*ret);
 	identify(ptr);
+
+	delete ret;
 }
 
 

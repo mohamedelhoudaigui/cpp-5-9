@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/18 14:18:44 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:58:34 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ bool	AllNumbers(const char *str)
 {
 	if (strlen(str) == 0)
 		return false;
+	int	point = 0;
 	for (int i = 0; i < strlen(str); ++i)
 	{
-		if (str[i] < '0' || str[i] > '9') 
+		if (str[i] == '.')
+		{
+			if (i == 0 || i == strlen(str) - 1 || point >= 0)
+				return false; 
+			point ++;
+		}
+		else if (str[i] < '0' || str[i] > '9') 
 		{
 			if (str[i] != '+' && str[i] != '-')
-			{
 				return false;	
-			}
 		}
 	}
 	return true;
@@ -33,8 +38,8 @@ int	Scalar::ToInt(const char *str, bool c)
 {
 	if (c == true)
 		std::cout << "int : ";
-	long long res = std::atoll(str);
-	if ((res == 0 && (str[0] != '0' && str[1] != '\0')) || res > INT_MAX || res < INT_MIN || !AllNumbers(str))
+	long res = std::atol(str);
+	if (res > INT_MAX || res < INT_MIN || !AllNumbers(str))
 	{
 		if (c == true)
 			std::cout << "impossible" << std::endl;
@@ -59,7 +64,7 @@ void	Scalar::ToFloat(const char *str)
 		std::cout << "impossible";
 	}
 	else
-		std::cout << std::fixed << std::setprecision(2) << res << 'f';
+		std::cout  << res << 'f';
 	std::cout << std::endl;
 }
 
@@ -73,7 +78,7 @@ void	Scalar::ToDouble(const char *str)
 		std::cout << "impossible";
 	}
 	else
-		std::cout << std::fixed << std::setprecision(2) << res;
+		std::cout  << res;
 	std::cout << std::endl;
 }
 
@@ -100,10 +105,10 @@ void	Scalar::ToChar(const char *str)
 	std::cout << std::endl;
 }
 
-void	Scalar::convert(std::string input)
+void	Scalar::convert(const char *input)
 {
-	ToChar(input.c_str());
-	ToInt(input.c_str(), true);
-	ToFloat(input.c_str());
-	ToDouble(input.c_str());
+	ToChar(input);
+	ToInt(input, true);
+	ToFloat(input);
+	ToDouble(input);
 }
