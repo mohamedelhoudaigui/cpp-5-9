@@ -1,8 +1,8 @@
-SRCS = main.cpp
+SRCS = main.cpp Span.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = span.hpp
+HEADERS = Span.hpp
 
 CC = c++ -std=c++98
 
