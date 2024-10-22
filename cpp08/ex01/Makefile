@@ -2,7 +2,7 @@ SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = Array.hpp
+HEADERS = span.hpp
 
 CC = c++ -std=c++98
 
@@ -10,7 +10,7 @@ FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-NAME = Array
+NAME = span
 
 all : $(NAME)
 
