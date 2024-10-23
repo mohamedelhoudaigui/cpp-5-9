@@ -6,13 +6,14 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:18 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/19 16:58:23 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/23 21:08:29 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-int	main(int ac, char **av) {
+int	main(int ac, char **av)
+{
 	if (ac == 2)
 	{
 		Scalar::convert(av[1]);

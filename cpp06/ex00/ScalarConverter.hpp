@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:19:43 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/18 19:20:21 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/10/23 21:28:57 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
-#include <cerrno>
+#include <limits.h>
+#include <cstring>
+#include <cstdio>
 #include <float.h>
 
 class Scalar {
