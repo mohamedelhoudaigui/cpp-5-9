@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Funcs.hpp                                          :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 00:03:34 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/10 08:20:56 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/11/23 00:12:34 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCS_HPP
-#define FUNCS_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 #include <iostream>
 #include <string>
 
-
-//class Test {
-
-//};
 
 template<typename T>
 void swap(T& var1, T& var2) {

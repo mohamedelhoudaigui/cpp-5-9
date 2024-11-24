@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:09:53 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/22 20:07:55 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/11/24 00:41:34 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdexcept>
 #include <algorithm>
 #include <iostream>
-#include <limits.h>
 
 class Span
 {
@@ -29,26 +28,24 @@ class Span
 		~Span();
 
 		void	addNumber(int number);
-		int		shortestSpan() const;
-		int		longestSpan() const;
+		int		shortestSpan();
+		int		longestSpan();
 
-		unsigned int			getCapacity() const;
-		const std::vector<int>&	getSpan() const;
+		unsigned int			getCapacity()	const;
+		const std::vector<int>&	getSpan()	const;
 
 		template<typename Iter>
 		void	addNumbers(Iter begin, Iter end)
 		{
-			if (std::distance(begin, end) + _span.size() > _c)
+			if (std::distance(begin, end) + span.size() > c)
             	throw std::runtime_error("size of span exceeded");
 
-			_span.insert(_span.end(), begin, end);
+			span.insert(span.end(), begin, end);
 		}
 
 	private:
-		std::vector<int>	_span;
-		unsigned int		_c;
+		std::vector<int>	span;
+		unsigned int		c;
 };
-
-
 
 #endif

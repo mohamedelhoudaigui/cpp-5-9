@@ -12,15 +12,43 @@
 
 #include "EasyFind.hpp"
 
-int main() {
-	std::vector<int> gg;
-	gg.push_back(4);
-	gg.push_back(3);
-	gg.push_back(2);
-	gg.push_back(1);
-	std::vector<int>::iterator it;
-	it = easyfind(gg, 3);
-	std::cout << *it << '\n';
-	it = easyfind(gg, 9);
-	std::cout << *it << '\n';
+int main()
+{
+	{
+		try {
+			std::vector<int> gg;
+			gg.push_back(4);
+			gg.push_back(3);
+			gg.push_back(2);
+			gg.push_back(1);
+
+			std::vector<int>::iterator it;
+			it = easyfind(gg, 3);
+			std::cout << *it << '\n';
+			it = easyfind(gg, 9);
+			std::cout << *it << '\n';
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << '\n';
+		}
+	}
+
+	{
+		try {
+			std::deque<int> gg;
+			gg.push_back(4);
+			gg.push_back(3);
+			gg.push_back(2);
+			gg.push_back(1);
+
+			std::deque<int>::iterator it;
+			it = easyfind(gg, 3);
+			std::cout << *it << '\n';
+			it = easyfind(gg, 9);
+			std::cout << *it << '\n';
+		}
+		catch (const std::exception& e) {
+			std::cerr << e.what() << '\n';
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 09:16:29 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/10/22 18:42:53 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/11/23 00:15:49 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,73 +17,82 @@
 #include <iostream>
 
 template<typename T>
-class Array {
-public:
-	Array() : _size(0), _stockage(NULL) {}
+class Array
+{
+	public:
+		Array() : _size(0), _stockage(NULL) {}
 
-	Array(unsigned int size) : _size(size)
-	{
-		_stockage = new T[_size];
-	}
-
-	~Array()
-	{
-		delete[] _stockage;
-	}
-
-	Array(const Array& other) : _size(other.size())
-	{
-		T*	OtherStockage = other.GetStockage();
-
-		_stockage = new T[_size];
-		for (unsigned int i = 0; i < _size; ++i)
+		Array(unsigned int size) : _size(size)
 		{
-			_stockage[i] = OtherStockage[i];
+			_stockage = new T[_size];
 		}
-	}
 
-	Array& operator=(const Array& other)
-	{
-		if (this == &other)
+		~Array()
+		{
+			delete[] _stockage;
+		}
+
+		Array(const Array& other) : _size(other.size())
+		{
+			T*	OtherStockage = other.GetStockage();
+
+			_stockage = new T[_size];
+			for (unsigned int i = 0; i < _size; ++i)
+			{
+				_stockage[i] = OtherStockage[i];
+			}
+		}
+
+		Array& operator=(const Array& other)
+		{
+			if (this == &other)
+				return (*this);
+
+			unsigned int	OtherSize = other.size();
+			T*              OtherStockage = other.GetStockage();
+
+			this->_size = OtherSize;
+			delete[] _stockage;
+			this->_stockage = new T[_size];
+
+			for (unsigned int i = 0; i < _size; ++i)
+			{
+				_stockage[i] = OtherStockage[i];
+			}
 			return (*this);
-
-		unsigned int	OtherSize = other.size();
-		T*              OtherStockage = other.GetStockage();
-
-		_size = OtherSize;
-		delete[] _stockage;
-		_stockage = new T[_size];
-
-		for (unsigned int i = 0; i < _size; ++i)
-		{
-			_stockage[i] = OtherStockage[i];
 		}
-		return (*this);
-	}
 
-	T& operator[](unsigned int index) const
-	{
-		if (index >= _size)
+		const T& operator[](unsigned int index) const
 		{
-			throw std::out_of_range("index out of range");
+			if (index >= _size)
+			{
+				throw std::out_of_range("index out of range");
+			}
+			return _stockage[index];
 		}
-		return _stockage[index];
-	}
 
+		T& operator[](unsigned int index)
+		{
+			if (index >= _size)
+			{
+				throw std::out_of_range("index out of range");
+			}
+			return _stockage[index];
+		}
 
-	unsigned int size() const
-	{
-		return (_size);
-	}
+		unsigned int size() const
+		{
+			return (_size);
+		}
 
-	T*          GetStockage() const
-	{
-		return (this->_stockage);
-	}
+		T*          GetStockage() const
+		{
+			return (this->_stockage);
+		}
 
-private:
-	unsigned int    _size;
-	T*              _stockage;
+	private:
+		unsigned int    _size;
+		T*              _stockage;
 };
 
 #endif
