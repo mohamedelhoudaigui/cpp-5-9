@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 23:06:58 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/12/23 05:08:39 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/12/24 00:41:10 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	RPN::Parse(const char* input)
 	{
         if (!token.empty())
 		{
-			if (token == "+" || token == "-" || token == "+" || token == "/")
+			if (token == "+" || token == "-" || token == "*" || token == "/")
 			{
 				if (Input.size() < 2)
 				{
@@ -89,7 +89,7 @@ void	RPN::Parse(const char* input)
 				Input.pop();
 				try
 				{
-					int res = DoOp(n1, n2, token[0]);
+					int res = DoOp(n2, n1, token[0]);
 					Input.push(res);
 				}
 				catch(const std::exception& e)
@@ -105,11 +105,16 @@ void	RPN::Parse(const char* input)
 			else
 			{
 				std::cerr << "Invalid token: " << token << std::endl;
+				exit(1);
 			}
         }
     }
 	if (Input.size() != 1)
 	{
 		std::cerr << "Error" << std::endl;
+	}
+	else
+	{
+		std::cout << Input.top() << std::endl;
 	}
 }

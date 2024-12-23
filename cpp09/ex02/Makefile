@@ -4,7 +4,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 HEADERS = RPN.hpp
 
-CC = cpp -std=c++98
+CC = g++-10 -std=c++98
 
 FLAGS = -Wall -Wextra -Werror
 
