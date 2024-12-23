@@ -1,10 +1,10 @@
-SRCS = main.cpp RPN.cpp
+SRCS = RPN.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 HEADERS = RPN.hpp
 
-CC = c++ -std=c++98
+CC = cpp -std=c++98
 
 FLAGS = -Wall -Wextra -Werror
 
