@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 23:57:59 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/12/14 00:21:52 by mel-houd         ###   ########.fr       */
+/*   Updated: 2024/12/24 03:09:31 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,24 @@
 #include <string>
 #include <fstream>
 #include <map>
+#include <stdexcept>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
 
-#include "IBitcoinExchange.hpp"
+#define DATA_FILE "data.csv"
 
-
-class BitcoinParser : public IBitcoinParser
+class BitcoinParser
 {
 	public:
-		BitcoinParser(std::string data_file, std::string input_file);
+		BitcoinParser();
+		void	Feed(const char* input_file);
 		
 
 	private:
-		std::map<int, std::string> input;
-		std::map<int, std::string> data;
+		std::map<double, std::string>	data;
+		std::map<long, std::string>	input;
 };
 
 #endif
