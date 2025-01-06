@@ -14,8 +14,8 @@
 #define EASYFIND_HPP
 
 #include <algorithm>
-#include <iostream>
 #include <vector>
+#include <iostream>
 #include <queue>
 
 template<typename T>

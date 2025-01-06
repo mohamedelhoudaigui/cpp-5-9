@@ -6,7 +6,7 @@
 /*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:15:24 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/11/24 14:37:20 by mel-houd         ###   ########.fr       */
+/*   Updated: 2025/01/04 09:58:17 by mel-houd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ Span::Span(const Span& other)
 
 Span&	Span::operator=(const Span& other)
 {
+	if (this == &other)
+		return (*this);
 	this->c = other.getCapacity();
-	std::vector<int> tmp(other.getSpan());
-	this->span = tmp;
+	this->span = other.getSpan();
 	return (*this);
 }
 

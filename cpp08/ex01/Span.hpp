@@ -17,6 +17,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <iostream>
+#include <climits>
 
 class Span
 {

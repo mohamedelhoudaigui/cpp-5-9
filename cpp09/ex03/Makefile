@@ -1,16 +1,16 @@
-SRCS = main.cpp
+SRCS = PmergeMe.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = EasyFind.hpp
+HEADERS = PmergeMe.hpp
 
-CC = c++ -std=c++98
+CC = c++ 
 
 FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-NAME = easyfind
+NAME = PmergeMe
 
 all : $(NAME)
 
