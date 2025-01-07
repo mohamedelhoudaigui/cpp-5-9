@@ -15,7 +15,7 @@ int main(int ac, char **av) {
     a.sort_pairs();
     a.insertion_sort();
     a.seperate_chain();
-    a.zbi();
+    a.merge_insert();
 
     //    a.print_vector(a.get_input(), "Before");
     //  a.print_vector(a.get_result(), "After");

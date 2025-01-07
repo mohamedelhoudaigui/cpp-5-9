@@ -132,7 +132,7 @@ public:
     return left; // This is the insertion point
   }
 
-  void zbi() {
+  void merge_insert() {
     vector<int> jacob = generate_jacobsthal_sequence(pend_chain.size());
     for (int i = 0; i < jacob.size(); ++i)
       cout << jacob[i] << " ";
