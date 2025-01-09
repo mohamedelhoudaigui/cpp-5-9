@@ -1,16 +1,16 @@
-SRCS = main.cpp
+SRCS = RPN.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-HEADERS = PmergeMe.hpp
+HEADERS = RPN.hpp
 
-CC = c++ 
+CC = c++ -std=c++98
 
 FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-NAME = PmergeMe
+NAME = RPN
 
 all : $(NAME)
 

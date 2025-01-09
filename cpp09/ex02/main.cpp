@@ -1,27 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-houd <mel-houd@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 05:04:54 by mel-houd          #+#    #+#             */
-/*   Updated: 2024/12/23 05:07:18 by mel-houd         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "PmergeMe.hpp"
 
-#include "RPN.hpp"
 
-int main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		std::cerr << "error args" << std::endl;
-		return (1);
- 	}
+int main(int ac, char **av) {
 
-	RPN	i;
-	i.Parse(av[1]);
+  if (ac == 1) {
+    std::cerr << "error , need args" << std::endl;
+    exit(1);
+  }
 
-	return (0);	
+  try {
+    MergeInsertion<std::vector> a;
+    MergeInsertion<std::deque>  b;
+    a.entry_point(ac, av);
+    b.entry_point(ac, av);
+
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << std::endl;
+  }
+
+  return (0);
 }
