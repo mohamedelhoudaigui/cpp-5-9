@@ -13,26 +13,29 @@
 #ifndef BITCOIN
 #define BITCOIN
 
-#include <string>
-#include <fstream>
-#include <map>
-#include <stdexcept>
-#include <fstream>
-#include <sstream>
-#include <iostream>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <stdexcept>
+#include <string>
 
 #define DATA_FILE "data.csv"
 
-class BitcoinParser
-{
-	public:
-		BitcoinParser();
-		void	Feed(const char* input_file);
-		
+class BitcoinParser {
+public:
+  BitcoinParser();
+  ~BitcoinParser();
+  BitcoinParser(const BitcoinParser &other);
+  BitcoinParser &operator=(const BitcoinParser &other);
 
-	private:
-		std::map<long, double>	data; //date -> bitcoin_price
+  const std::map<long, double> &get_data() const;
+
+  void Feed(const char *input_file);
+
+private:
+  std::map<long, double> data; // date -> bitcoin_price
 };
 
 #endif
