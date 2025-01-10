@@ -3,8 +3,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
 #include <algorithm>
 #include <cmath>
+#include <sys/time.h>
+#include <iomanip>
 
 template<template<typename T, typename Alloc = std::allocator<T> > class Container>
 class MergeInsertion {
@@ -154,18 +157,27 @@ class MergeInsertion {
       }
     }
 
-    void  entry_point(int ac, char **av)
+    void  entry_point(int ac, char **av, bool print)
     {
       buffer_input(ac, av);
-      print_container(input, "before");
       split_input();
       sort_pairs();
       insertion_sort();
       seperate_chain();
       pend_chain_setup();
       merge();
-      print_container(main_chain, "after ");
+      if (print)
+      {
+        print_container(input, "before");
+        print_container(main_chain, "after ");
+      }
     }
+
+    long    get_size()
+    {
+        return (input.size());
+    }
+
 
   private:
     Container<long> input;
