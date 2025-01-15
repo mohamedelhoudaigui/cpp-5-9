@@ -9,11 +9,10 @@
 #include <sys/time.h>
 #include <vector>
 
-template <
-    template <typename T, typename Alloc = std::allocator<T> > class Container>
+template < template <typename T, typename Alloc = std::allocator<T> > class Container>
 class MergeInsertion {
 public:
-  MergeInsertion() : reminder(-1) {};
+  MergeInsertion() : reminder(-1), compare(0) {};
 
   long convert(char *s) {
     char *pos;
@@ -99,6 +98,7 @@ public:
       return main_chain.size();
 
     while (left <= right) {
+        compare ++;
       int mid = left + (right - left) / 2;
 
       if (main_chain[mid] == target)
@@ -152,17 +152,19 @@ public:
     sort_pairs();
     insertion_sort();
     seperate_chain();
-    pend_chain_setup();
+    // pend_chain_setup();
     merge();
     if (print) {
       print_container(input, "before");
       print_container(main_chain, "after ");
     }
+    std::cout << "debug: " << compare << std::endl;
   }
 
   long get_size() { return (input.size()); }
 
 private:
+  int compare;
   Container<long> input;
   Container<std::pair<long, long> > chain;
   Container<long> main_chain;

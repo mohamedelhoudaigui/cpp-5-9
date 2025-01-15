@@ -128,7 +128,7 @@ static long convert_date(std::string date) {
       day = Token;
     n_tokens++;
   }
-  if (n_tokens != 3)
+  if (n_tokens != 3 || year.empty() || month.empty() || day.empty())
     throw std::runtime_error("Error: wrong date format");
 
   long y = check_year(year);
