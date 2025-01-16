@@ -12,7 +12,7 @@
 template < template <typename T, typename Alloc = std::allocator<T> > class Container>
 class MergeInsertion {
 public:
-  MergeInsertion() : reminder(-1), compare(0) {};
+  MergeInsertion() : reminder(-1) {};
 
   long convert(char *s) {
     char *pos;
@@ -62,7 +62,7 @@ public:
     }
   }
 
-  void insertion_sort() {
+  void merge() {
     for (int i = 1; i < chain.size(); ++i) {
       std::pair<long, long> key = chain[i];
       int j = i - 1;
@@ -98,7 +98,6 @@ public:
       return main_chain.size();
 
     while (left <= right) {
-        compare ++;
       int mid = left + (right - left) / 2;
 
       if (main_chain[mid] == target)
@@ -135,7 +134,7 @@ public:
     pend_chain = result;
   }
 
-  void merge() {
+  void insert() {
     for (int i = 0; i < pend_chain.size(); ++i) {
       int pos = binary_search(pend_chain[i]);
       main_chain.insert(main_chain.begin() + pos, pend_chain[i]);
@@ -150,21 +149,19 @@ public:
     buffer_input(ac, av);
     split_input();
     sort_pairs();
-    insertion_sort();
-    seperate_chain();
-    // pend_chain_setup();
     merge();
+    seperate_chain();
+    pend_chain_setup();
+    insert();
     if (print) {
       print_container(input, "before");
       print_container(main_chain, "after ");
     }
-    std::cout << "debug: " << compare << std::endl;
   }
 
   long get_size() { return (input.size()); }
 
 private:
-  int compare;
   Container<long> input;
   Container<std::pair<long, long> > chain;
   Container<long> main_chain;
